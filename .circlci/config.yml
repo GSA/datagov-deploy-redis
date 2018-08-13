@@ -2,11 +2,8 @@ version: 2
 jobs:
   test-ubuntu-1404:
     working_directory: ~
-    machine:
-      ruby:
-        version: 2.4
-      services:
-        - docker
+    docker:
+      - image: ubuntu/ubuntu:14.04
     steps:
       - checkout
       - run:
