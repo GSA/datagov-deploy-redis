@@ -12,10 +12,7 @@ jobs:
       - checkout
 
       # Ansible syntax check
-      - run: ansible-playbook --syntax-check *.yml
-
-      # Ansible lint check
-      - run: ansible-lint -v -x ANSIBLE0010 *.yml
+      - run: ansible-playbook --syntax-check tasks/*.yml
 
   test-kitchen:
     machine: true
