@@ -1,4 +1,5 @@
 source "https://rubygems.org"
-gem "test-kitchen","1.16.0"
+ruby "2.3"
+gem "test-kitchen"
 gem "kitchen-ansible"
 gem "kitchen-vagrant"
