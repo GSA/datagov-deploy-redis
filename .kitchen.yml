@@ -1,6 +1,6 @@
 ---
 driver:
-  name: vagrant
+  name: docker
 
 provisioner:
   name: ansible_playbook
@@ -8,17 +8,10 @@ provisioner:
   ansible_verbosity: 2
   require_ruby_for_busser: false
   require_chef_for_busser: true
-  hosts: all
+  hosts: localhost
 
 platforms:
   - name: ubuntu-14.04
-  - name: centos-6.7
-    driver_config:
-      box: wittman/centos-6.8-ansible
-  - name: centos-7.3
-    driver_config:
-      box: wittman/centos-7.3-ansible
-  - name: ubuntu-16.04
 
 suites:
   - name: default
