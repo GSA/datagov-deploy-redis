@@ -34,6 +34,7 @@
         - ../templates
   register: sentinel_unit_file
   when: redis_as_service and ansible_service_mgr|default() == "systemd"
+  notify: "restart systemd"
 
 - name: create systemd tmpfiles configuration
   template:
@@ -45,14 +46,7 @@
     - ansible_service_mgr|default() == "systemd"
     - (redis_sentinel_pidfile|dirname).startswith("/var/run") or (redis_sentinel_pidfile|dirname).startswith("/run")
 
-- name: reload systemd daemon
-  systemd:
-    daemon_reload: yes
-#  command: systemctl daemon-reload
-  when:
-    - redis_as_service
-    - ansible_service_mgr|default() == "systemd"
-    - sentinel_unit_file|changed
+- meta: flush_handlers
 
 - name: set sentinel to start at boot
   service:

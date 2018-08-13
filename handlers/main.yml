@@ -10,3 +10,10 @@
     name: sentinel_{{ redis_sentinel_port }}
     state: restarted
   when: redis_as_service
+
+- name: "restart systemd"
+  systemd:
+    daemon_reload: yes
+  when:
+    - redis_as_service
+    - ansible_service_mgr|default() == "systemd"
