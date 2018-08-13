@@ -12,7 +12,7 @@ jobs:
       - checkout
 
       # Ansible syntax check
-      - run: ansible-playbook --syntax-check ansible/*.yml
+      - run: ansible-playbook --syntax-check *.yml
 
       # Ansible lint check
       - run: ansible-lint -v -x ANSIBLE0010 *.yml
