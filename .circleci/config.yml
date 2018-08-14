@@ -18,7 +18,7 @@ jobs:
       - run: ansible-playbook --syntax-check test.yml
 
       # Ansible lint check
-      - run: ansible-lint -v -x ANSIBLE0010 test.yml
+      - run: ansible-lint -v -x ANSIBLE0010 --exclude=vendor test.yml
 
   test-kitchen:
     machine: true
