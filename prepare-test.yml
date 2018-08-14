@@ -26,8 +26,5 @@
         reload: yes
         ignoreerrors: yes
 
-    - name: Create symbolic link
-      file:
-        src: "{{ playbook_dir }}/vendor/davidwittman.redis"
-        dest: "{{ playbook_dir }}/vendor/ansible-redis"
-        state: link
+    - name: Rename role
+      command: " mv {{ playbook_dir }}/vendor/davidwittman.redis {{ playbook_dir }}/vendor/ansible-redis"
