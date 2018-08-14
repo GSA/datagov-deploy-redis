@@ -6,7 +6,7 @@ provisioner:
   name: ansible_playbook
   ansible_verbose: true
   ansible_verbosity: 2
-  ansible_extra_flags: "-e @vars.yml"
+  ansible_extra_flags: "-e @../../role_vars.yml"
   require_ruby_for_busser: false
   require_chef_for_busser: true
   hosts: all
