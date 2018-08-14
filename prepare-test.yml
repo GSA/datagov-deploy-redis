@@ -13,6 +13,7 @@
         line: 'gem "kitchen-docker"'
 
     - name: enable overcommit in sysctl
+      become: true
       sysctl:
         name: vm.overcommit_memory
         value: 1
