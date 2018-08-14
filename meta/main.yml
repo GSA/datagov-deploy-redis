@@ -1,16 +1,26 @@
 ---
 dependencies: []
+
 galaxy_info:
-  author: Jason Schulte
-  description: Wrapper role for GSA data.gov to install redis using: https://github.com/DavidWittman/ansible-redis
-  company: "GSA"
+  author: geerlingguy
+  description: Kibana for Linux.
+  company: "Midwestern Mac, LLC"
+  license: "license (BSD, MIT)"
   min_ansible_version: 2.0
-  license: MIT
   platforms:
-    - name: Ubuntu
-      versions:
-        - trusty
-        - xenial
+  - name: EL
+    versions:
+    - 6
+    - 7
+  - name: Debian
+    versions:
+    - jessie
+  - name: Ubuntu
+    versions:
+    - precise
+    - trusty
+    - xenial
   galaxy_tags:
-    - gsa
-    - redis
+    - web
+    - system
+    - monitoring
