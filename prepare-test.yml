@@ -4,16 +4,16 @@
     - name: Replace .kitchen.yml for ansible-redis role
       copy:
         src: files/test/.kitchen.yml
-        dest: vendor/ansible-redis/.kitchen.yml
+        dest: vendor/davidwittman.redis/.kitchen.yml
 
     - name: Copy vars for testing
       copy:
         src: vars/version.yml
-        dest: vendor/ansible-redis/vars.yml
+        dest: vendor/davidwittman.redis/vars.yml
 
     - name: Replace kitchen driver in Gemfile
       lineinfile:
-        path: vendor/ansible-redis/Gemfile
+        path: vendor/davidwittman.redis/Gemfile
         regexp: '^gem "kitchen-vagrant"'
         line: 'gem "kitchen-docker"'
 
@@ -25,3 +25,9 @@
         state: present
         reload: yes
         ignoreerrors: yes
+
+    - name: Create symbolic link
+      file:
+        src: "vendor/davidwittman.redis"
+        dest: "vendor/ansible-redis"
+        state: link
