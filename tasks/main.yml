@@ -1,33 +1,35 @@
 ---
-  - name: Include redis version
-    include_vars:
-      file: vars/version.yml
+- name: Remove OS redis packages
+  become: true
+  package:
+    name: "{{ item }}"
+    state: absent
+  with_items:
+    - "redis-server"
+    - "redis-tools"
 
-  - name: Remove OS redis packages
-    become: true
-    package:
-      name: "{{ item }}"
-      state: absent
-    with_items:
-      - "redis-server"
-      - "redis-tools"
+- name: Purge redis packages
+  apt:
+    name: "{{ item }}"
+    state: absent
+    purge: yes
+  with_items:
+    - "redis-server"
+    - "redis-tools"
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
 
-  - name: Purge redis packages
-    apt:
-      name: "{{ item }}"
-      state: absent
-      purge: yes
-    with_items:
-      - "redis-server"
-      - "redis-tools"
-    when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+- name: Set redis password from vault
+  set_fact:
+    redis_password: "{{ catalog_db_pass }}"
+  when: catalog_db_pass is defined
 
-  - name: Set redis password from vault
-    set_fact:
-      redis_password: "{{ catalog_db_pass }}"
-    when: catalog_db_pass is defined
-
-  - name: Import ansible-redis role
-    become: true
-    import_role:
-      name: davidwittman.redis
+- name: Import ansible-redis role
+  become: true
+  import_role:
+    name: davidwittman.redis
+  vars:
+    redis_password: "password"  #Only used for testing
+    redis_dir: /var/lib/redis
+    redis_pidfile: /var/run/redis/redis-server.pid
+    redis_logfile: /var/log/redis/redis-server.log
+    redis_version: 4.0.11

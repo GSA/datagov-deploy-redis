@@ -1,2 +1,11 @@
 ---
-dependencies: []
+dependencies:
+- role: 'davidwittman.redis'
+  vars:
+    redis_password: "password"  #Only used for testing
+    redis_dir: /var/lib/redis
+    redis_pidfile: /var/run/redis/redis-server.pid
+    redis_logfile: /var/log/redis/redis-server.log
+    redis_version: 4.0.11
+  tags:
+    - never
