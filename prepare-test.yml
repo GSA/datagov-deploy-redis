@@ -3,7 +3,7 @@
   tasks:
     - name: Replace .kitchen.yml for ansible-redis role
       copy:
-        src: test/files/.kitchen.yml
+        src: files/test/.kitchen.yml
         dest: vendor/ansible-redis/.kitchen.yml
 
     - name: Replace kitchen driver in Gemfile
