@@ -1,7 +1,7 @@
 ---
-  - name: Gather package facts
-    package_facts:
-      manager: "auto"
+  - name: Include redis version
+    include_vars:
+      file: files/version.yml
 
   - name: Remove OS redis packages
     become: true
@@ -20,7 +20,7 @@
   - name: Import ansible-redis role
     become: true
     import_role:
-      name: vendor/ansible-redis
+      name: ansible-redis
 
   - name: Test redis-cli
     command: "redis-cli -a {{ redis_password }} info"
