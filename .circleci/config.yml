@@ -24,7 +24,7 @@ jobs:
     machine: true
     steps:
       - checkout
-      # Install ansible
+      # Install dependencies
       - run:
           name: Install ansible
           command: |
@@ -34,11 +34,18 @@ jobs:
             sudo apt-get install -y python2.7 ansible
 
       # Ansible Galaxy install requirements
-      - run: ansible-galaxy install -r requirements.yml -p vendor
+      - run:
+          name: Ansible Galaxy install
+          command: ansible-galaxy install -r requirements.yml -p vendor
+
+      # Run ansible test prep
+      - run:
+          name: Run ansible test prep
+          command: ansible-playbook prepare-test.yml
 
       # Bundle install for ansible-redis role
       - run:
-          name: Install dependencies
+          name: Bundle install
           command: |
             cd vendor/ansible-redis
             bundle install
