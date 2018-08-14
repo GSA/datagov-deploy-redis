@@ -6,6 +6,11 @@
         src: files/test/.kitchen.yml
         dest: vendor/ansible-redis/.kitchen.yml
 
+    - name: Copy role vars for testing
+      copy:
+        src: vars/main.yml
+        dest: vendor/ansible-redis/vars.yml
+
     - name: Replace kitchen driver in Gemfile
       lineinfile:
         path: vendor/ansible-redis/Gemfile

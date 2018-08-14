@@ -1,2 +1,4 @@
+#Ansible Galaxy requirements
+---
 - src: davidwittman.redis
   name: ansible-redis
