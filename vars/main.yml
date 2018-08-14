@@ -1,5 +1,4 @@
 ---
-redis_service_name: "redis-server"
 redis_password: "password"  #Only used for testing
 redis_dir: /var/lib/redis
 redis_pidfile: /var/run/redis/redis-server.pid
