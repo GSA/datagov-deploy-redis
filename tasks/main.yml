@@ -1,0 +1,26 @@
+---
+  - name: Gather package facts
+    package_facts:
+      manager: "auto"
+
+  - name: Remove OS redis packages
+    become: true
+    package:
+      name: "{{ item }}"
+      state: absent
+    with_items:
+      - "redis-server"
+      - "redis-tools"
+
+  - name: Set redis password from vault
+    set_fact:
+      redis_password: "{{ vault_catalog_db_pass }}"
+    when: vault_catalog_db_pass is defined
+
+  - name: Import ansible-redis role
+    import_role:
+      name: vendor/ansible-redis
+
+  - name: debug redis version
+    debug:
+      msg: "{{redis_version}}"
