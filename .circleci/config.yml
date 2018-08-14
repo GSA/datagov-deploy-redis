@@ -57,11 +57,6 @@ jobs:
             cd vendor/ansible-redis
             bundle exec kitchen test
 
-      # Run ansible test
-      - run:
-          name: Run ansible test
-          command: ansible-playbook test.yml
-
 workflows:
   version: 2
   commit:
