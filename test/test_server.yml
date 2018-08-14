@@ -4,4 +4,4 @@
   vars:
     redis_travis_ci: true
   roles:
-    - ../../ansible-redis
+    - ../../datagov-deploy-redis

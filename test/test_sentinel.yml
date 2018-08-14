@@ -9,4 +9,4 @@
         host: localhost
         port: 6379
   roles:
-    - ../../ansible-redis
+    - ../../datagov-deploy-redis

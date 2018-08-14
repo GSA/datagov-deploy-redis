@@ -14,8 +14,8 @@ platforms:
   - name: ubuntu-14.04
 
 suites:
-  - name: default
+#  - name: default
   - name: logfile
-  - name: sentinel
-  - name: checksum
-  - name: service-name
+#  - name: sentinel
+#  - name: checksum
+#  - name: service-name

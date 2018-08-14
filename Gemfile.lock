@@ -12,8 +12,8 @@ GEM
     kitchen-ansible (0.48.1)
       net-ssh (>= 3)
       test-kitchen (~> 1.4)
-    kitchen-vagrant (1.3.0)
-      test-kitchen (~> 1.4)
+    kitchen-docker (2.7.0)
+      test-kitchen (>= 1.0.0)
     little-plugger (1.1.4)
     logging (2.2.2)
       little-plugger (~> 1.1)
@@ -67,8 +67,11 @@ PLATFORMS
 
 DEPENDENCIES
   kitchen-ansible
-  kitchen-vagrant
+  kitchen-docker
   test-kitchen
 
+RUBY VERSION
+   ruby 2.3.7p456
+
 BUNDLED WITH
-   1.13.6
+   1.16.3

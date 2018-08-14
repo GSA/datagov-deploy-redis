@@ -1,5 +1,5 @@
 ---
 - hosts: localhost
   roles:
-    - role: ansible-redis
+    - role: datagov-deploy-redis
       redis_service_name: redis

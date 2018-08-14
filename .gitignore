@@ -53,3 +53,4 @@ ansible/inventories/mgmt-ocsit
 
 # Kitchen
 .kitchen
+.bundle

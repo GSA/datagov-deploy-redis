@@ -9,4 +9,4 @@
         redis_checksum: b2a791c4ea3bb7268795c45c6321ea5abcc24457178373e6a6e3be6372737f23
       when: ansible_version.major < 2
   roles:
-    - ansible-redis
+    - datagov-deploy-redis
