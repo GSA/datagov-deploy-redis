@@ -23,7 +23,7 @@
       name: vendor/ansible-redis
 
   - name: Test redis-cli
-    command: "redis-cli info"
+    command: "redis-cli -a {{ redis_password }} info"
     register: redis_info
 
   - name: Fail if unable to connect to redis
