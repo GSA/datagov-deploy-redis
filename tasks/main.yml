@@ -23,8 +23,9 @@
       name: vendor/ansible-redis
 
   - name: Test redis-cli
-    command: "redis-cli -a {{ redis_password }} info"
+    command: "redis-cli info"
     register: redis_info
+    changed_when: redis_info.stdout is not defined or "redis_version:" + redis_version not in redis_info.stdout
 
   - name: Fail if unable to connect to redis
     fail:
