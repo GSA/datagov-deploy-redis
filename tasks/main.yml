@@ -13,8 +13,8 @@
       - "redis-tools"
 
   - name: Purge redis packages
-    apt:
-      name: "{{ item }}"
+    - apt:
+         name: "{{ item }}"
       state: absent
       purge: yes
     with_items:
