@@ -52,7 +52,7 @@ jobs:
 
       # Run test kitchen for ansible-redis role
       - run:
-          name: Run test-kitchen
+          name: Run kitchen test
           command: |
             cd vendor/ansible-redis
             bundle exec kitchen test
