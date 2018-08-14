@@ -15,10 +15,10 @@ jobs:
       - run: ansible-galaxy install -r requirements.yml -p vendor
 
       # Ansible syntax check
-      - run: ansible-playbook --syntax-check test.yml
+      - run: ansible-playbook --syntax-check *.yml
 
       # Ansible lint check
-      - run: ansible-lint -v -x ANSIBLE0010 --exclude=vendor test.yml
+      - run: ansible-lint -v -x ANSIBLE0010 --exclude=vendor *.yml
 
   test-kitchen:
     machine: true
