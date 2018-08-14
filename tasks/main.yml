@@ -24,8 +24,8 @@
 
   - name: Set redis password from vault
     set_fact:
-      redis_password: "{{ vault_catalog_db_pass }}"
-    when: vault_catalog_db_pass is defined
+      redis_password: "{{ catalog_db_pass }}"
+    when: catalog_db_pass is defined
 
   - name: Import ansible-redis role
     become: true
