@@ -1,0 +1,13 @@
+---
+- hosts: all
+  tasks:
+    - name: Replace .kitchen.yml for ansible-redis role
+      copy:
+        src: test/files/.kitchen.yml
+        dest: vendor/ansible-redis/.kitchen.yml
+
+    - name: Replace kitchen driver in Gemfile
+      lineinfile:
+        path: vendor/ansible-redis/Gemfile
+        regexp: '^gem "kitchen-vagrant"'
+        line: 'gem "kitchen-docker"'
