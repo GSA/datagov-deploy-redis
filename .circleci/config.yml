@@ -18,7 +18,7 @@ jobs:
       - run: ansible-playbook --syntax-check lint.yml
 
       # Ansible lint check
-      - run: ansible-lint -v -x ANSIBLE0010 lint.yml
+      - run: ansible-lint -v -x ANSIBLE0010 --exclude=/root/.ansible/roles lint.yml
 
   test:
     machine: true
