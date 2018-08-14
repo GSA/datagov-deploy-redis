@@ -11,6 +11,9 @@ jobs:
       - run: ansible-lint --version
       - checkout
 
+      # Ansible Galaxy install
+      - run: ansible-galaxy install -r requirements.yml -p vendor
+
       # Ansible syntax check
       - run: ansible-playbook --syntax-check test.yml
 
