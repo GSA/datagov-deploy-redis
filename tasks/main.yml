@@ -1,7 +1,7 @@
 ---
   - name: Include redis version
     include_vars:
-      file: files/version.yml
+      file: vars/version.yml
 
   - name: Remove OS redis packages
     become: true
