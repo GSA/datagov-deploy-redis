@@ -20,7 +20,7 @@
   - name: Import ansible-redis role
     become: true
     import_role:
-      name: "datagov-deploy-redis/vendor/ansible-redis"
+      name: ansible-redis
 
   - name: Test redis-cli
     command: "redis-cli -a {{ redis_password }} info"
