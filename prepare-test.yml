@@ -28,6 +28,6 @@
 
     - name: Create symbolic link
       file:
-        src: "vendor/davidwittman.redis"
-        dest: "vendor/ansible-redis"
+        src: "{{ playbook_dir }}/vendor/davidwittman.redis"
+        dest: "{{ playbook_dir }}/vendor/ansible-redis"
         state: link
