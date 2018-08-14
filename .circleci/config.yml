@@ -24,6 +24,14 @@ jobs:
     machine: true
     steps:
       - checkout
+      # Install ansible
+      - run:
+          name: Install ansible
+          command: |
+            apt-get install software-properties-common
+            apt-add-repository ppa:ansible/ansible -y
+            apt-get update
+            apt-get install ansible
 
       # Ansible Galaxy install
       - run: ansible-galaxy install -r requirements.yml -p vendor
