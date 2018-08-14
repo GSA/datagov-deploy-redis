@@ -30,4 +30,4 @@
   - name: Import ansible-redis role
     become: true
     import_role:
-      name: vendor/davidwittman.redis
+      name: davidwittman.redis
