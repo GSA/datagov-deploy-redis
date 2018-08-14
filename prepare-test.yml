@@ -28,3 +28,4 @@
 
     - name: Rename role
       command: " mv {{ playbook_dir }}/vendor/davidwittman.redis {{ playbook_dir }}/vendor/ansible-redis"
+      when: true
