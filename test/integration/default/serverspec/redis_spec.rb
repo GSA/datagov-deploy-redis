@@ -22,11 +22,6 @@ describe 'Redis' do
     its(:size) { should > 0 }
   end
 
-  describe file('/proc/sys/vm/overcommit_memory') do
-    it { should be_file }
-    it { should contain '1' }
-  end
-
   describe file('/usr/bin/redis-server') do
     it { should be_symlink }
   end
