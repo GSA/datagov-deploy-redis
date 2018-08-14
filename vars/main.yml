@@ -1,5 +1,4 @@
 ---
-redis_version: 4.0.11
 redis_password: "password"  #Only used for testing
 redis_dir: /var/lib/redis
 redis_pidfile: /var/run/redis/redis-server.pid
