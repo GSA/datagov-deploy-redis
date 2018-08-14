@@ -22,6 +22,12 @@
     import_role:
       name: vendor/davidwittman.redis
 
+  - name: Replace service kill command
+    lineinfile:
+      path: "/etc/init.d/{{ redis_service_name }}"
+      regexp: '            \$CLIEXEC shutdown'
+      line: '            pkill -F \$PIDFILE'
+
   - name: Test redis-cli
     command: "redis-cli -a {{ redis_password }} info"
     register: redis_info
