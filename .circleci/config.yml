@@ -15,12 +15,12 @@ jobs:
       - run: ansible-galaxy install -r requirements.yml -p vendor
 
       # Ansible syntax check
-      - run: ansible-playbook --syntax-check prepare-test.yml
+      - run: ansible-playbook --syntax-check prepare-test.yml test.yml
 
       # Ansible lint check
-      - run: ansible-lint -v -x ANSIBLE0010 --exclude=vendor prepare-test.yml
+      - run: ansible-lint -v -x ANSIBLE0010 --exclude=vendor prepare-test.yml test.yml
 
-  test-kitchen:
+  test:
     machine: true
     steps:
       - checkout
@@ -57,11 +57,16 @@ jobs:
             cd vendor/ansible-redis
             bundle exec kitchen test
 
+      # Run ansible test
+      - run:
+          name: Run ansible test
+          command: ansible-playbook test.yml
+
 workflows:
   version: 2
   commit:
     jobs:
       - lint
-      - test-kitchen:
+      - test:
           requires:
             - lint
