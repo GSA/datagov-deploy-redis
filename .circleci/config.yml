@@ -12,7 +12,7 @@ jobs:
       - checkout
 
       # Ansible Galaxy install requirements
-      - run: ansible-galaxy install -r requirements.yml -p vendor
+      - run: ansible-galaxy install -r requirements.yml
 
       # Ansible syntax check
       - run: ansible-playbook --syntax-check lint.yml
