@@ -22,6 +22,7 @@ jobs:
 
   test:
     machine: true
+    working_directory: ~/datagov-deploy-redis
     steps:
       - checkout
 
