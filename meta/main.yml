@@ -1,10 +1,16 @@
 ---
+dependencies: []
 galaxy_info:
   author: Jason Schulte
   description: Wrapper role for GSA data.gov to install redis using: https://github.com/DavidWittman/ansible-redis
-  min_ansible_version: 2.6.0
+  company: "GSA"
+  min_ansible_version: 2.0
+  license: MIT
   platforms:
     - name: Ubuntu
       versions:
-        - all
-dependencies: []
+        - trusty
+        - xenial
+  galaxy_tags:
+    - gsa
+    - redis
