@@ -18,6 +18,7 @@
     when: vault_catalog_db_pass is defined
 
   - name: Import ansible-redis role
+    become: true
     import_role:
       name: vendor/ansible-redis
 
