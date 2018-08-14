@@ -15,20 +15,27 @@ jobs:
       - run: ansible-galaxy install -r requirements.yml -p vendor
 
       # Ansible syntax check
-      - run: ansible-playbook --syntax-check *.yml
+      - run: ansible-playbook --syntax-check prepare-test.yml
 
       # Ansible lint check
-      - run: ansible-lint -v -x ANSIBLE0010 --exclude=vendor *.yml
+      - run: ansible-lint -v -x ANSIBLE0010 --exclude=vendor prepare-test.yml
 
   test-kitchen:
     machine: true
     steps:
       - checkout
+
+      # Ansible Galaxy install
+      - run: ansible-galaxy install -r requirements.yml -p vendor
+
+      # Bundle install for ansible-redis role
       - run:
           name: Install dependencies
           command: |
             cd vendor/ansible-redis
             bundle install
+
+      # Run test kitchen for ansible-redis role
       - run:
           name: Run test-kitchen
           command: |
