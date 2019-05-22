@@ -1,4 +1,20 @@
 ---
+galaxy_info:
+  author: General Services Administration
+  description: "Ansible role to install redis"
+  company: GSA
+  license: CC0-1.0
+
+  min_ansible_version: 2.6
+
+  platforms:
+    - name: Ubuntu
+      versions:
+        - trusty
+        - bionic
+
+  galaxy_tags: []
+
 dependencies:
 - role: 'davidwittman.redis'
   vars:

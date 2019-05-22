@@ -1,46 +1,35 @@
+---
 version: 2
 jobs:
-  lint:
+  build:
     docker:
-      # specify the version you desire here
-      - image: particlekit/ansible-lint
-
-    working_directory: ~/repo
-
-    steps:
-      - run: ansible-lint --version
-      - checkout
-
-      # Ansible Galaxy install requirements
-      - run: ansible-galaxy install -r requirements.yml
-
-      # Ansible syntax check
-      - run: ansible-playbook --syntax-check lint.yml
-
-      # Ansible lint check
-      - run: ansible-lint -v -x ANSIBLE0010 --exclude=/root/.ansible/roles lint.yml
-
-  test:
-    machine: true
+      - image: circleci/python:3.6
+    environment:
+      PIPENV_VENV_IN_PROJECT: 1
     working_directory: ~/datagov-deploy-redis
     steps:
       - checkout
-
-      # Bundle install for ansible-redis role
+      - setup_remote_docker
+      - restore_cache:
+          keys:
+            - v1-pip-{{ checksum "Pipfile.lock" }}
+            - v1-pip-
       - run:
-          name: Bundle install
-          command: bundle install
-
-      # Run test kitchen for ansible-redis role
+          name: install python dependencies
+          command: |
+            pip install --user --upgrade pipenv
+            pipenv install --dev
+      - save_cache:
+          key: v1-pip-{{ checksum "Pipfile.lock" }}
+          paths:
+            - .venv
       - run:
-          name: Run kitchen test
-          command: bundle exec kitchen test
+          name: test
+          command: pipenv run molecule test --all
+
 
 workflows:
   version: 2
   commit:
     jobs:
-      - lint
-      - test:
-          requires:
-            - lint
+      - build
