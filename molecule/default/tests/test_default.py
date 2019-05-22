@@ -40,3 +40,4 @@ def test_redis_cli_file(host):
     file = host.file("/usr/bin/redis-cli")
 
     assert file.is_symlink
+    
