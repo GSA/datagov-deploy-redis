@@ -1,0 +1,45 @@
+---
+dependency:
+  name: galaxy
+  options:
+    role-file: requirements.yml
+driver:
+  name: docker
+lint:
+  name: yamllint
+platforms:
+  - name: redis-trusty
+    image: ubuntu:trusty
+  - name: redis-bionic
+    image: ubuntu:bionic
+provisioner:
+  name: ansible
+  lint:
+    name: ansible-lint
+  inventory:
+    group_vars:
+      all:
+        redis_service_name: redis
+        redis_dir: /var/lib/redis
+        redis_pidfile: /var/run/redis/redis-server.pid
+        redis_logfile: /var/log/redis/redis-server.log
+        redis_version: 4.0.11
+        redis_install_dir: /usr/local
+scenario:
+  name: default
+  test_sequence:
+    - lint
+    - destroy
+    - dependency
+    - syntax
+    - create
+    - prepare
+    - converge
+    # - idempotence # Disable idempodence, dependent role is not idempotent
+    - side_effect
+    - verify
+    - destroy
+verifier:
+  name: testinfra
+  lint:
+    name: flake8
