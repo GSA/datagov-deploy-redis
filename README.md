@@ -1,37 +1,43 @@
-## Welcome to GitHub Pages
+[![CircleCI](https://circleci.com/gh/GSA/datagov-deploy-redis.svg?style=svg)](https://circleci.com/gh/GSA/datagov-deploy-redis)
 
-You can use the [editor on GitHub](https://github.com/GSA/datagov-deploy-redis/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+# datagov-deploy-redis
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+This project is part of [datagov-deploy](https://github.com/GSA/datagov-deploy).
 
-### Markdown
+Ansible role to deploy redis.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
-```markdown
-Syntax highlighted code block
+## Usage
 
-# Header 1
-## Header 2
-### Header 3
+Include this role in your `requirements.yml`.
 
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+```yaml
+- src: https://github.com/gsa/datagov-deploy-redis.git
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
 
-### Jekyll Themes
+### Variables
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/GSA/datagov-deploy-redis/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
 
-### Support or Contact
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+## Prerequisites for development
+
+- [Ruby](https://www.ruby-lang.org/) 2.3+
+- [Docker](https://www.docker.com/)
+- [Python](https://www.python.org/) 2.7 or 3.5+ in a virtualenv
+
+
+## Development
+
+Install dependencies.
+
+    $ make setup
+
+Run the tests.
+
+    $ make test
+
+You can debug the container after it runs. See `kitchen help` for additional
+commands.
+
+    $ bundle exec kitchen login
