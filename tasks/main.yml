@@ -1,7 +1,31 @@
 ---
+# Our defaults will only apply to our own role. We need to explicitly pass them
+# to the role. However, since the names are identical, it creats an infinite
+# loop evaluating the variables (and ultimately an AnsibleError). Instead, we
+# give them temporary names and pass those.
+#
+# We could give our defaults new names and skip the set_fact task but since this is our redis role, and I think
+# the redis_ prefix is most appropriate.
+- name: set facts for role variables
+  set_fact:
+    __redis_service_name: "{{ redis_service_name }}"
+    __redis_dir: "{{ redis_dir }}"
+    __redis_pidfile: "{{ redis_pidfile }}"
+    __redis_logfile: "{{ redis_logfile }}"
+    __redis_version: "{{ redis_version }}"
+    __redis_install_dir: "{{ redis_install_dir }}"
+
+
 - name: install redis
   import_role:
     name: davidwittman.redis
+  vars:
+    redis_service_name: "{{ __redis_service_name }}"
+    redis_dir: "{{ __redis_dir }}"
+    redis_pidfile: "{{ __redis_pidfile }}"
+    redis_logfile: "{{ __redis_logfile }}"
+    redis_version: "{{ __redis_version }}"
+    redis_install_dir: "{{ __redis_install_dir }}"
 
 - name: Allow read permissions on redis install dir
   file: dest=/opt/redis owner=root group=redis mode=0755 state=directory recurse=yes
