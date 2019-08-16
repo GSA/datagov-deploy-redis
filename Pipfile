@@ -5,8 +5,7 @@ verify_ssl = true
 
 [dev-packages]
 ansible = "<=2.7.10"
-docker-py = "*"
-molecule = "*"
+molecule = {extras = ["docker"],version = "==2.20.1"}
 
 [packages]
 
