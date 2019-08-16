@@ -12,15 +12,15 @@ jobs:
       - setup_remote_docker
       - restore_cache:
           keys:
-            - v1-pip-{{ checksum "Pipfile.lock" }}
-            - v1-pip-
+            - v2-pip-{{ checksum "Pipfile.lock" }}
+            - v2-pip-
       - run:
           name: install python dependencies
           command: |
             pip install --user --upgrade pipenv
-            pipenv sync --dev
+            pipenv sync --dev && pipenv clean
       - save_cache:
-          key: v1-pip-{{ checksum "Pipfile.lock" }}
+          key: v2-pip-{{ checksum "Pipfile.lock" }}
           paths:
             - .venv
       - run:
