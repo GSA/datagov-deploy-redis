@@ -1,7 +1,7 @@
 ---
-redis_service_name: redis
-redis_dir: /var/lib/redis
-redis_pidfile: /var/run/redis/redis-server.pid
-redis_logfile: /var/log/redis/redis-server.log
-redis_version: 4.0.14
-redis_install_dir: /usr/local
+__redis_service_name: redis
+__redis_dir: /var/lib/redis
+__redis_pidfile: /var/run/redis/redis-server.pid
+__redis_logfile: /var/log/redis/redis-server.log
+__redis_version: 4.0.14
+__redis_install_dir: /usr/local
