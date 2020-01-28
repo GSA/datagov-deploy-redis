@@ -8,24 +8,17 @@
 # the redis_ prefix is most appropriate.
 - name: set facts for role variables
   set_fact:
-    __redis_service_name: "{{ redis_service_name }}"
-    __redis_dir: "{{ redis_dir }}"
-    __redis_pidfile: "{{ redis_pidfile }}"
-    __redis_logfile: "{{ redis_logfile }}"
-    __redis_version: "{{ redis_version }}"
-    __redis_install_dir: "{{ redis_install_dir }}"
-
-
-- name: install redis
-  import_role:
-    name: davidwittman.redis
-  vars:
     redis_service_name: "{{ __redis_service_name }}"
     redis_dir: "{{ __redis_dir }}"
     redis_pidfile: "{{ __redis_pidfile }}"
     redis_logfile: "{{ __redis_logfile }}"
     redis_version: "{{ __redis_version }}"
     redis_install_dir: "{{ __redis_install_dir }}"
+
+
+- name: install redis
+  import_role:
+    name: davidwittman.redis
 
 - name: Allow read permissions on redis install dir
   file: dest=/opt/redis owner=root group=redis mode=0755 state=directory recurse=yes
